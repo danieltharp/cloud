@@ -8,22 +8,22 @@ resource "digitalocean_database_cluster" "mysql" {
 }
 
 output "mysql_host" {
-    value = digitalocean_database_cluster.mysql.host
+  value = digitalocean_database_cluster.mysql.host
 }
 
 output "mysql_private_host" {
-    value = digitalocean_database_cluster.mysql.private_host
+  value = digitalocean_database_cluster.mysql.private_host
 }
 
 output "mysql_database" {
-    value = digitalocean_database_cluster.mysql.database
+  value = digitalocean_database_cluster.mysql.database
 }
 
 output "mysql_username" {
-    value = digitalocean_database_cluster.mysql.user
+  value = digitalocean_database_cluster.mysql.user
 }
 
 output "mysql_password" {
-    value = digitalocean_database_cluster.mysql.password
-    sensitive = true
+  value     = digitalocean_database_cluster.mysql.password
+  sensitive = true
 }
