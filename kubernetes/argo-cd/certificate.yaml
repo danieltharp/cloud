@@ -1,0 +1,13 @@
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: argo-cd-cert
+  namespace: cert-manager
+spec:
+  secretName: argo-cd-certificate
+  issuerRef:
+    name: letsencrypt
+    kind: ClusterIssuer
+  commonName: argo.cloud.danieltharp.com
+  dnsNames:
+    - argo.cloud.danieltharp.com

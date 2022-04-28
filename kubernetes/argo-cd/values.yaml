@@ -1,4 +1,4 @@
-repoServer:
-  replicas: 1
-  service:
-    port: 8080
+argo-cd:
+  server:
+    extraArgs:
+      - --insecure

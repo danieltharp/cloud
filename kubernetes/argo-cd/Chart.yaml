@@ -1,7 +1,7 @@
 apiVersion: v2
 name: argocd
 description: Cloud native continuous deployment tool
-version: 1.0.0
+version: 1.0.1
 dependencies:
     - name: argo-cd
       version: 4.5.7

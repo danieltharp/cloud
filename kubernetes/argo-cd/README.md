@@ -62,4 +62,7 @@ replicaset.apps/argo-cd-argocd-server-6f67cddd75                      1         
 
 NAME                                                     READY   AGE
 statefulset.apps/argo-cd-argocd-application-controller   1/1     2m55s
+
+$ k get secret -n argo-cd argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d                                                                                                                    22-04-27 - 16:36:46 
+<snip>
 ```
