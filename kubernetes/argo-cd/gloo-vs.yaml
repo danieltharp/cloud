@@ -1,0 +1,23 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: argo-cd-routes
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - argo.cloud.danieltharp.com
+    routes:
+      - matchers:
+          - prefix: /  # Everything
+        routeAction:
+          single:
+            kube:
+              ref:
+                name: argo-cd-argocd-server
+                namespace: argo-cd
+              port: 80
+  sslConfig:
+    secretRef:
+      name: argo-cd-certificate
+      namespace: cert-manager

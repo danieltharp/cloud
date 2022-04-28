@@ -1,0 +1,15 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: 'gloo-core-routes'
+  namespace: 'gloo-system'
+spec:
+  virtualHost:
+    domains:
+      - 'cloud.danieltharp.com'
+    routes:
+      - matchers:
+          - prefix: /hello
+        directResponseAction:
+          status: 200
+          body: "Hello there."

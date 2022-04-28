@@ -9,9 +9,9 @@ resource "digitalocean_spaces_bucket" "spaces" {
 }
 
 output "spaces_urn" {
-    value = digitalocean_spaces_bucket.spaces.urn
+  value = digitalocean_spaces_bucket.spaces.urn
 }
 
 output "spaces_domain" {
-    value = digitalocean_spaces_bucket.spaces.bucket_domain_name
+  value = digitalocean_spaces_bucket.spaces.bucket_domain_name
 }

@@ -1,0 +1,19 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: 'cert-manager-routes'
+  namespace: 'gloo-system'
+spec:
+  virtualHost:
+    domains:
+      - '*'
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        routeAction:
+          single:
+            kube:
+              ref:
+                name: acme-solver
+                namespace: cert-manager
+              port: 8089
