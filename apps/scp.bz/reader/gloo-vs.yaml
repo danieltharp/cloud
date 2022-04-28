@@ -1,0 +1,27 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: scp-bz-routes
+  namespace: gloo-system
+spec:
+  sslConfig:
+    secretRef:
+      name: scp-bz-certificate
+      namespace: cert-manager
+    sniDomains:
+      - scp.bz
+  virtualHost:
+    domains:
+      - scp.bz
+    routes:
+      - matchers:
+          - prefix: /  # Everything else.
+            methods:
+              - GET
+        routeAction:
+          single:
+            kube:
+              ref:
+                name: scp-bz-reader-svc
+                namespace: scp-bz-reader
+              port: 8080

@@ -1,0 +1,21 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: scp-bz-http-routes
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - scp.bz
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        delegateAction:
+          ref:
+            name: cert-manager-routes
+            namespace: gloo-system
+      - matchers:
+        - prefix: /  # Everything else.
+        redirectAction:
+            hostRedirect: scp.bz
+            httpsRedirect: true
