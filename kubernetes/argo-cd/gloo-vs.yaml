@@ -4,10 +4,22 @@ metadata:
   name: argo-cd-routes
   namespace: gloo-system
 spec:
+  sslConfig:
+    secretRef:
+      name: argo-cd-certificate
+      namespace: cert-manager
+    sniDomains:
+      - argo.cloud.danieltharp.com
   virtualHost:
     domains:
       - argo.cloud.danieltharp.com
     routes:
+      - matchers:
+        - prefix: /.well-known/acme-challenge/
+        delegateAction:
+          ref:
+            name: cert-manager-routes
+            namespace: gloo-system
       - matchers:
           - prefix: /  # Everything
         routeAction:
@@ -17,7 +29,3 @@ spec:
                 name: argo-cd-argocd-server
                 namespace: argo-cd
               port: 80
-  sslConfig:
-    secretRef:
-      name: argo-cd-certificate
-      namespace: cert-manager
