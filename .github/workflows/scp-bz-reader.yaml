@@ -16,9 +16,6 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
-      - name: Update SHA
-        run: echo $GITHUB_SHA > $GITHUB_WORKSPACE/site/_meta
-
       - name: Build container image
         run: docker build -f apps/scp.bz/reader/Dockerfile -t registry.digitalocean.com/tharp/scp-bz-reader:$(echo $GITHUB_SHA | head -c7) -t registry.digitalocean.com/tharp/scp-bz-reader:latest .
 
