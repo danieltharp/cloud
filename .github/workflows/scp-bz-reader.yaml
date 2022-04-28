@@ -9,7 +9,7 @@ on:
 
 jobs:
   build:
-    name: Build, push, and deploy
+    name: Build and push Docker image
     runs-on: ubuntu-latest
     steps:
 

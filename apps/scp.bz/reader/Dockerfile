@@ -1,8 +1,8 @@
 # builder image
 FROM golang:1.18 as builder
 RUN mkdir /build
-ADD main.go /build/
-ADD go.mod /build/
+ADD apps/scp.bz/reader/main.go /build/
+ADD apps/scp.bz/reader/go.mod /build/
 WORKDIR /build
 RUN go get scp-bz-reader
 RUN CGO_ENABLED=0 GOOS=linux go build -a -o scp-bz-reader .
