@@ -1,0 +1,24 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: 'gloo-core-routes'
+  namespace: 'gloo-system'
+spec:
+  virtualHost:
+    domains:
+      - 'cloud.danieltharp.com'
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        routeAction:
+          single:
+            kube:
+              ref:
+                name: acme-solver
+                namespace: cert-manager
+              port: 8089
+      - matchers:
+          - prefix: /hello
+        directResponseAction:
+          status: 200
+          body: "Hello there."

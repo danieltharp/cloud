@@ -1,6 +1,11 @@
 Here we use [Gloo Edge](https://www.solo.io/products/gloo-edge/) to be our edge proxy. It wraps Envoy with a lot of 
 nice features, most of which I'm not using given the scale of this deployment.
 
+The general logic for service delegation is that subdomains get their own Virtual Service, and paths off of the root 
+domain just get delegated Route Tables. This is to keep things clean from an SSL certificate management perspective. In
+your day-to-day in production this would probably be coupled with some sort of admission controller that only allows the
+new Virtual Service if the domain matches what you permit.
+
 This was the first piece installed in the K8s cluster so was done without the benefit of a CI/CD pipeline initially.
 
 ```
