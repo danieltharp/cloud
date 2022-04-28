@@ -6,7 +6,7 @@ resource "digitalocean_kubernetes_cluster" "cluster" {
 
   node_pool {
     name       = "friendly-canadian-node-pool"
-    size       = "s-1vcpu-2gb"
+    size       = "s-2vcpu-4gb"  # The s-1vcpu-2gb nodes can't run Gloo.
     auto_scale = true
     min_nodes  = 2
     max_nodes  = 4
