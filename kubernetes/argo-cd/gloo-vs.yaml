@@ -9,16 +9,7 @@ spec:
       - argo.cloud.danieltharp.com
     routes:
       - matchers:
-          - prefix: /.well-known/acme-challenge/  # SSL Renewals
-        routeAction:
-          single:
-            kube:
-              ref:
-                name: acme-solver
-                namespace: cert-manager
-              port: 8089
-      - matchers:
-          - prefix: /  # Everything else
+          - prefix: /  # Everything
         routeAction:
           single:
             kube:
