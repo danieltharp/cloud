@@ -4,7 +4,8 @@ on:
       - main
       - develop
     paths:
-      - 'apps/scp.bz/reader/**'
+      - 'apps/scp.bz/reader/main.go'
+      - 'apps/scp.bz/reader/go.mod'
       - '.github/workflows/scp-bz-reader.yaml'
 
 jobs:
