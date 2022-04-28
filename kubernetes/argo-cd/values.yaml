@@ -1,4 +1,4 @@
 argo-cd:
   server:
     extraArgs:
-      - --insecure
+      - --insecure  # Disable HTTP-to-HTTPS as Gloo is handling the redirection.
