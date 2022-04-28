@@ -1,3 +1,6 @@
-gateway:
-  deployment:
-    replicas: 1
+gloo:
+  gateway:
+    deployment:
+      replicas: 1
+    validation:
+      alwaysAcceptResources: false
