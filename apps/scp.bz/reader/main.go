@@ -16,7 +16,20 @@ var db *sql.DB
 func forward(w http.ResponseWriter, req *http.Request) {
 	var url string
 	shortcode := req.URL.Path[1:]
-	fmt.Println("Received request to lookup " + shortcode)
+
+	// Answer healthchecks from K8s
+	if shortcode == "healthcheck" {
+		w.Header().Set("Content-Type", "text/plain")
+		w.WriteHeader(http.StatusOK)
+		w.Write([]byte("ok"))
+		return
+	}
+
+	// Send blank requests on to the wiki
+	if shortcode == "" {
+		http.Redirect(w, req, "https://scp-wiki.wikidot.com/", 301)
+		return
+	}
 
 	// If we have a request for just 3 or 4 numbers, send immediately to the associated article.
 	numbers, _ := regexp.MatchString("\\d{3,4}", shortcode)
@@ -32,7 +45,6 @@ func forward(w http.ResponseWriter, req *http.Request) {
 		codeQuery := db.QueryRow("select url from urls where code = ?", shortcode)
 		switch err2 := codeQuery.Scan(&url); err2 {
 		case sql.ErrNoRows:
-			fmt.Println("No results found.")
 			// We don't have anything to forward, just send them on to the wiki at that address.
 			http.Redirect(w, req, "https://scp-wiki.wikidot.com/"+shortcode, 302)
 			return

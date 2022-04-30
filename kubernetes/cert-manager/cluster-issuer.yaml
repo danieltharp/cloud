@@ -20,3 +20,4 @@ spec:
           dnsNames:
             - cloud.danieltharp.com
             - argo.cloud.danieltharp.com
+            - scp.bz

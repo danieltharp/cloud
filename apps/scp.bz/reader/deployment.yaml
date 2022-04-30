@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: scp-bz-reader
+  namespace: scp-bz-reader
+  labels:
+    app: scp-bz-reader
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: scp-bz-reader
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: scp-bz-reader
+    spec:
+      containers:
+        - name: scp-bz-reader
+          image: registry.digitalocean.com/tharp/scp-bz-reader:SCPBZREADERVERSION # Changed on the fly by GitHub Actions
+          ports:
+            - containerPort: 8080
+          env:
+            - name: SCP_BZ_STRING
+              valueFrom:
+                secretKeyRef:
+                  key: SCP_BZ_STRING
+                  name: scp-bz-connection-string
+      imagePullSecrets:
+        - name: tharp
