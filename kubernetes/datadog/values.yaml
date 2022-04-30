@@ -1,0 +1,5 @@
+datadog:
+  site: datadoghq.com
+  logs:
+    enabled: true
+    containerCollectAll: true
