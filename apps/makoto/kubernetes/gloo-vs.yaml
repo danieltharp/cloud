@@ -1,0 +1,27 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: makoto-routes
+  namespace: gloo-system
+spec:
+  sslConfig:
+    secretRef:
+      name: makoto-certificate
+      namespace: cert-manager
+    sniDomains:
+      - makoto.tharp.io
+  virtualHost:
+    domains:
+      - makoto.tharp.io
+    routes:
+      - matchers:
+          - prefix: /  # Everything else.
+            methods:
+              - GET
+        routeAction:
+          single:
+            kube:
+              ref:
+                name: makoto-svc
+                namespace: makoto
+              port: 80

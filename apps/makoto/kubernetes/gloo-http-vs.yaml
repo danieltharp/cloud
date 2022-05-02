@@ -1,0 +1,21 @@
+apiVersion: gateway.solo.io/v1
+kind: VirtualService
+metadata:
+  name: makoto-http-routes
+  namespace: gloo-system
+spec:
+  virtualHost:
+    domains:
+      - makoto.tharp.io
+    routes:
+      - matchers:
+          - prefix: /.well-known/acme-challenge/
+        delegateAction:
+          ref:
+            name: cert-manager-routes
+            namespace: gloo-system
+      - matchers:
+        - prefix: /  # Everything else.
+        redirectAction:
+            hostRedirect: makoto.tharp.io
+            httpsRedirect: true
