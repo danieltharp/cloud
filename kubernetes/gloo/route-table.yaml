@@ -13,3 +13,8 @@ spec:
         directResponseAction:
           status: 200
           body: "Hello there."
+      - matchers:
+          - prefix: /
+        directResponseAction:
+          status: 200
+          body: "ok"
