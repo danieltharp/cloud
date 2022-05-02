@@ -1,7 +1,8 @@
 # Using the pattern found at https://www.honeybadger.io/blog/laravel-docker-php/
+WORKDIR apps/makoto
 
 FROM composer:2.3 as build
-COPY apps/makoto /app/
+COPY . /app/
 RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
 
 FROM php:8-apache AS base
