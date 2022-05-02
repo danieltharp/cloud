@@ -1,0 +1,31 @@
+on:
+  push:
+    branches:
+      - main
+      - develop
+    paths:
+      - 'apps/laravel-base/*'
+      - '.github/workflows/laravel-base.yaml'
+
+jobs:
+  build:
+    name: Build and push Docker image
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Checkout main
+        uses: actions/checkout@v2
+
+      - name: Build container image
+        run: docker build -f apps/laravel-base/Dockerfile -t registry.digitalocean.com/tharp/laravel-base:latest .
+
+      - name: Install doctl
+        uses: digitalocean/action-doctl@v2
+        with:
+          token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
+
+      - name: Log in to DigitalOcean Container Registry
+        run: doctl registry login
+
+      - name: Push image to DigitalOcean Container Registry
+        run: docker push registry.digitalocean.com/tharp/laravel-base:latest

@@ -25,12 +25,8 @@ spec:
           image: registry.digitalocean.com/tharp/makoto:MAKOTOVERSION # Changed on the fly by GitHub Actions
           ports:
             - containerPort: 80
-          volumeMounts:
-            - mountPath: /var/www/html/
-              name: makoto-env
-      volumes:
-        - name: makoto-env
-          configMap:
-            name: makoto-env-file
+          envFrom:
+            - configMapRef:
+                name: makoto-env
       imagePullSecrets:
         - name: tharp
