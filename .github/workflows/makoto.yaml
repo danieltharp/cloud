@@ -25,19 +25,19 @@ jobs:
         run: doctl registry login
 
       - name: Build container image
-        run: docker build -f apps/makoto/Dockerfile -t registry.digitalocean.com/tharp/makoto:$(echo $GITHUB_SHA | head -c7) -t registry.digitalocean.com/tharp/makoto:latest .
+        run: docker build -f apps/makoto/Dockerfile -t registry.digitalocean.com/tharp/makoto:$(echo $GITHUB_SHA | head -c7) .
 
       - name: Push image to DigitalOcean Container Registry
         run: docker push registry.digitalocean.com/tharp/makoto:$(echo $GITHUB_SHA | head -c7)
 
       - name: Update deployment file
-        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's/MAKOTOVERSION/'${TAG}'/' $GITHUB_WORKSPACE/apps/makoto/deployment.yaml
+        run: TAG=$(echo $GITHUB_SHA | head -c7) && sed -i 's/MAKOTOVERSION/'${TAG}'/' $GITHUB_WORKSPACE/apps/makoto/kubernetes/deployment.yaml
 
       - name: Save DigitalOcean kubeconfig with short-lived credentials
         run: doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{ secrets.DIGITALOCEAN_K8S_CLUSTER_ID }}
 
       - name: Deploy to DigitalOcean Kubernetes
-        run: kubectl apply -f $GITHUB_WORKSPACE/apps/makoto/deployment.yaml -n makoto
+        run: kubectl apply -f $GITHUB_WORKSPACE/apps/makoto/kubernetes/deployment.yaml -n makoto
 
       - name: Verify deployment
         run: kubectl rollout status deployment/makoto -n makoto
