@@ -2,6 +2,7 @@ on:
   push:
     branches:
       - main
+      - develop
     paths:
       - 'apps/makoto/*'
       - '.github/workflows/makoto.yaml'

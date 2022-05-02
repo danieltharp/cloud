@@ -1,7 +1,7 @@
 # Using the pattern found at https://www.honeybadger.io/blog/laravel-docker-php/
 
 FROM composer:2.3 as build
-COPY . /app/
+COPY apps/makoto /app/
 RUN composer install --prefer-dist --no-dev --optimize-autoloader --no-interaction
 
 FROM php:8-apache AS base
