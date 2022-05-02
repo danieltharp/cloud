@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: makoto
+  namespace: makoto
+  labels:
+    app: makoto
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: makoto
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 1
+  minReadySeconds: 5
+  template:
+    metadata:
+      labels:
+        app: makoto
+    spec:
+      containers:
+        - name: makoto
+          image: registry.digitalocean.com/tharp/makoto:MAKOTOVERSION # Changed on the fly by GitHub Actions
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: /var/www/html/
+              name: makoto-env
+      volumes:
+        - name: makoto-env
+          configMap:
+            name: makoto-env-file
+      imagePullSecrets:
+        - name: tharp
