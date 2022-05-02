@@ -1,47 +1,46 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: makoto-env-file
+  name: makoto-env
   namespace: makoto
 data:
-  .env: |
-  APP_ENV=production
-  APP_KEY=
-  APP_DEBUG=false
-  APP_LOG_LEVEL=warn
-  APP_URL=https://makoto.tharp.io
-  
-  DB_CONNECTION=mysql
-  DB_HOST=super-secret-host.db.ondigitalocean.com
-  DB_PORT=3306
-  DB_DATABASE=makoto
-  DB_USERNAME=doadmin
-  DB_PASSWORD=supersecretpassword
-  
-  BROADCAST_DRIVER=log
-  CACHE_DRIVER=file
-  SESSION_DRIVER=file
-  QUEUE_DRIVER=sync
-  
-  REDIS_HOST=127.0.0.1
-  REDIS_PASSWORD=null
-  REDIS_PORT=6379
-  
-  MAIL_DRIVER=smtp
-  MAIL_HOST=mailtrap.io
-  MAIL_PORT=2525
-  MAIL_USERNAME=null
-  MAIL_PASSWORD=null
-  MAIL_ENCRYPTION=null
-  
-  PUSHER_APP_ID=
-  PUSHER_KEY=
-  PUSHER_SECRET=
-  
-  AWS_ACCESS_KEY_ID=
-  AWS_SECRET_ACCESS_KEY=
-  AWS_DEFAULT_REGION=us-east-1
-  DYNAMODB_CACHE_TABLE=cache
-  DYNAMODB_ENDPOINT=
-  SQS_PREFIX=https://sqs.us-east-1.amazonaws.com/your-account-id
-  SQS_QUEUE=your-queue-name
+    APP_ENV: production
+    APP_KEY: abcd1234
+    APP_DEBUG: "false"
+    APP_LOG_LEVEL: warn
+    APP_URL: https://makoto.tharp.io
+    
+    DB_CONNECTION: mysql
+    DB_HOST: super-secret-host.db.ondigitalocean.com
+    DB_PORT: "3306"
+    DB_DATABASE: makoto
+    DB_USERNAME: doadmin
+    DB_PASSWORD: supersecretpassword
+    
+    BROADCAST_DRIVER: log
+    CACHE_DRIVER: file
+    SESSION_DRIVER: file
+    QUEUE_DRIVER: sync
+    
+    REDIS_HOST: 127.0.0.1
+    REDIS_PASSWORD: asdf
+    REDIS_PORT: "6379"
+    
+    MAIL_DRIVER: smtp
+    MAIL_HOST: mailtrap.io
+    MAIL_PORT: "2525"
+    MAIL_USERNAME: asdf
+    MAIL_PASSWORD: asdf
+    MAIL_ENCRYPTION: asdf
+    
+    PUSHER_APP_ID: asdf
+    PUSHER_KEY: asdf
+    PUSHER_SECRET: asdf
+    
+    AWS_ACCESS_KEY_ID: asdf
+    AWS_SECRET_ACCESS_KEY: asdf
+    AWS_DEFAULT_REGION: "us-east-1"
+    DYNAMODB_CACHE_TABLE: cache
+    DYNAMODB_ENDPOINT: asdf
+    SQS_PREFIX: https://sqs.us-east-1.amazonaws.com/your-account-id
+    SQS_QUEUE: your-queue-name
