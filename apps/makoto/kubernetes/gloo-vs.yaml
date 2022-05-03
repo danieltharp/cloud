@@ -18,6 +18,10 @@ spec:
           - prefix: /  # Everything else.
             methods:
               - GET
+              - POST
+              - PUT
+              - PATCH
+              - DELETE
         routeAction:
           single:
             kube:

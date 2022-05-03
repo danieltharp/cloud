@@ -4,8 +4,10 @@ on:
       - main
       - develop
     paths:
-      - 'apps/makoto/*'
+      - 'apps/makoto/**'
+      - '!apps/makoto/kubernetes/**'
       - '.github/workflows/makoto.yaml'
+  workflow_dispatch:
 
 jobs:
   build:

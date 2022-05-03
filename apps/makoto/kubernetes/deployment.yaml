@@ -28,5 +28,14 @@ spec:
           envFrom:
             - configMapRef:
                 name: makoto-env
+          lifecycle:
+            postStart:
+              exec:
+                command:
+                  - "sh"
+                  - "-c"
+                  - |
+                    php artisan config:cache
+                    php artisan route:cache
       imagePullSecrets:
         - name: tharp
