@@ -51,10 +51,10 @@ class Handler extends ExceptionHandler
      *
      * @param Request $request
      * @param Exception $e
-     * @return Response
+     * @return Response|RedirectResponse
      * @throws Throwable
      */
-    public function render($request, Throwable $e): Response
+    public function render($request, Throwable $e): Response|RedirectResponse
     {
         return parent::render($request, $e);
     }
