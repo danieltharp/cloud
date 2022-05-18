@@ -40,7 +40,7 @@ class LocationController extends Controller
         $location = new Location();
             $location->name = $request->name;
             $location->description = $request->description;
-            $location->location_id = $request->location_id;
+            $location->location_id = $request->location_id ?? 0;
         $location->save();
 
         $request->session()->flash('link', 'Stubbed out <a href="/locations/'.$location->id.'/edit">'.$location->name.'</a>.');
