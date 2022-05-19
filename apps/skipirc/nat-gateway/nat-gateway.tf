@@ -1,10 +1,19 @@
-resource "aws_eip" "virginia" {
+resource "aws_eip" "blackjack" {
   vpc = true
 }
 
-resource "aws_nat_gateway" "virginia" {
+resource "aws_nat_gateway" "blackjack" {
   subnet_id = "subnet-0fe48a641e328bb56"
-  allocation_id = aws_eip.virginia.allocation_id
+  allocation_id = aws_eip.blackjack.allocation_id
+}
+
+resource "aws_eip" "services" {
+  vpc = true
+}
+
+resource "aws_nat_gateway" "services" {
+  subnet_id = "subnet-02966c74743b1df28"
+  allocation_id = aws_eip.services.allocation_id
 }
 
 resource "aws_eip" "california" {
