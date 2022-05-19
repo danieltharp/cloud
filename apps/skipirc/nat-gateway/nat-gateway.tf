@@ -4,5 +4,5 @@ resource "aws_nat_gateway" "virginia" {
 
 resource "aws_nat_gateway" "california" {
   subnet_id = "subnet-07af25260e27a3dfd"
-  provider = "aws.us_west_1"
+  provider = aws.us_west_1
 }

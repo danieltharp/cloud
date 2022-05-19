@@ -3,7 +3,7 @@ resource "aws_ebs_snapshot" "safe" {
   tags = {
     Name = "safe_snapshot"
   }
-  provider = "aws.ohio"
+  provider = aws.ohio
 }
 
 resource "aws_ebs_snapshot" "euclid" {
@@ -11,7 +11,7 @@ resource "aws_ebs_snapshot" "euclid" {
   tags = {
     Name = "euclid_snapshot"
   }
-  provider = "aws.ireland"
+  provider = aws.ireland
 }
 
 resource "aws_ebs_snapshot" "keter" {
@@ -19,7 +19,7 @@ resource "aws_ebs_snapshot" "keter" {
   tags = {
     Name = "keter_snapshot"
   }
-  provider = "aws.sydney"
+  provider = aws.sydney
 }
 
 resource "aws_ebs_snapshot" "blackjack" {
@@ -27,7 +27,7 @@ resource "aws_ebs_snapshot" "blackjack" {
   tags = {
     Name = "blackjack_snapshot"
   }
-  provider = "aws.virginia"
+  provider = aws.virginia
 }
 
 resource "aws_ebs_snapshot" "hookers" {
@@ -35,7 +35,7 @@ resource "aws_ebs_snapshot" "hookers" {
   tags = {
     Name = "hookers_snapshot"
   }
-  provider = "aws.california"
+  provider = aws.california
 }
 
 resource "aws_ebs_snapshot" "services" {
@@ -43,7 +43,7 @@ resource "aws_ebs_snapshot" "services" {
   tags = {
     Name = "services_snapshot"
   }
-  provider = "aws.virginia"
+  provider = aws.virginia
 }
 
 resource "aws_ebs_snapshot" "tokyo" {
@@ -51,5 +51,5 @@ resource "aws_ebs_snapshot" "tokyo" {
   tags = {
     Name = "tokyo_snapshot"
   }
-  provider = "aws.tokyo"
+  provider = aws.tokyo
 }
