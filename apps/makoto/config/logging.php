@@ -1,6 +1,8 @@
 <?php
 
+use Monolog\Formatter\JsonFormatter;
 use Monolog\Handler\StreamHandler;
+
 
 return [
 
@@ -65,6 +67,15 @@ return [
             'with' => [
                 'stream' => 'php://stderr',
             ],
+        ],
+
+        'stderr-json' => [
+            'driver' => 'monolog',
+            'handler' => StreamHandler::class,
+            'with' => [
+                'stream' => 'php://stderr',
+            ],
+            'formatter' => JsonFormatter::class,
         ],
 
         'syslog' => [
