@@ -3,7 +3,7 @@ terraform {
     organization = "tharp-cloud"
 
     workspaces {
-      name = "cloud"
+      name = "skipirc"
     }
   }
 }
