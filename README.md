@@ -3,7 +3,7 @@ My deployments for various websites and services in the cloud.
 
 Stuff inside:
 
-* Infrastructure management with [Terraform](https://terraform.io) on [DigitalOcean](digitalocean.com/)
+* Infrastructure management with [Terraform](https://terraform.io) on [DigitalOcean](https://digitalocean.com/)
 * Certificate management with [Cert-Manager](https://cert-manager.io/)
 * Traffic routing with [Gloo Edge](https://www.solo.io/products/gloo-edge/)
 * Continuous Integration with [GitHub Actions](https://github.com/features/actions)
