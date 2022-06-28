@@ -92,7 +92,7 @@ class ItemController extends Controller
         $item->date_purchased = $request->date_purchased;
         $item->where_purchased = $request->where_purchased;
         $item->purchase_price = $request->purchase_price * 100;
-        $item->esimtated_value = $request->estimated_value * 100;
+        $item->estimated_value = $request->estimated_value * 100;
         $item->save();
         return redirect()->to('/home');
     }
