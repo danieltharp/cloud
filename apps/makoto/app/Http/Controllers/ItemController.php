@@ -89,7 +89,10 @@ class ItemController extends Controller
         $item->location_id = $request->location_id ?? null;
         $item->make_model = $request->make_model ?? null;
         $item->serial_number = $request->serial_number ?? null;
-        $item->date_purchased = $request->date_purchased ?? null;
+        if(!empty($request->date_purchased)) {
+            # We do this one this way because postgres doesn't handle a null value on a datetime field well.
+            $item->date_purchased = $request->date_purchased;
+        }
         $item->where_purchased = $request->where_purchased ?? null;
         $item->purchase_price = ($request->purchase_price * 100 ?? null);
         $item->estimated_value = ($request->estimated_value * 100 ?? null);
