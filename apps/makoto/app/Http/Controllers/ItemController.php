@@ -85,14 +85,14 @@ class ItemController extends Controller
     {
         $item = Item::find($id);
         $item->name = $request->name;
-        $item->description = $request->description;
-        $item->location_id = $request->location_id;
-        $item->make_model = $request->make_model;
-        $item->serial_number = $request->serial_number;
-        $item->date_purchased = $request->date_purchased;
-        $item->where_purchased = $request->where_purchased;
-        $item->purchase_price = $request->purchase_price * 100;
-        $item->estimated_value = $request->estimated_value * 100;
+        $item->description = $request->description ?? null;
+        $item->location_id = $request->location_id ?? null;
+        $item->make_model = $request->make_model ?? null;
+        $item->serial_number = $request->serial_number ?? null;
+        $item->date_purchased = $request->date_purchased ?? null;
+        $item->where_purchased = $request->where_purchased ?? null;
+        $item->purchase_price = ($request->purchase_price * 100 ?? null);
+        $item->estimated_value = ($request->estimated_value * 100 ?? null);
         $item->save();
         return redirect()->to('/home');
     }
